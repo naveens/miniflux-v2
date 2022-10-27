@@ -1,0 +1,22 @@
+---
+services:
+  - type: web
+    name: miniflux
+    env: go
+    repo: https://github.com/naveens/miniflux-v2.git
+    branch: main
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    buildFilter:
+      paths:
+        - /**/*.go
+      ignoredPaths:
+        - /tests/*
+        - /**/*_test.go
